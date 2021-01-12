@@ -28,6 +28,7 @@ public class EntityStrawGolem extends EntityGolem {
 	public EntityStrawGolem(World worldIn) {
 		super(worldIn);
 		this.height /= 2.0f;
+		this.setCanPickUpLoot(true);
 	}
 	
 	@Override
@@ -41,6 +42,16 @@ public class EntityStrawGolem extends EntityGolem {
 		
 		if (lifespan.isOver())
 			attackEntityFrom(DamageSource.MAGIC, getMaxHealth()*100);
+	}
+
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+		if(this.canPickUpLoot() && !this.getHeldItemMainhand().isEmpty()) {
+			this.setCanPickUpLoot(false);
+		} else if (!this.canPickUpLoot() && this.getHeldItemMainhand().isEmpty()) {
+			this.setCanPickUpLoot(true);
+		}
 	}
 	
 	@Override
