@@ -3,6 +3,7 @@ package nivoridocs.strawgolem.entity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.client.renderer.GlStateManager;
 
@@ -11,79 +12,58 @@ import net.minecraft.client.renderer.GlStateManager;
  * Created using Tabula 7.0.0
  */
 public class ModelStrawGolem extends ModelBase {
-	public ModelRenderer leftleg;
-	public ModelRenderer rightleg;
-	public ModelRenderer hip;
-	public ModelRenderer body;
-	public ModelRenderer leftarm;
-	public ModelRenderer rightarm;
-	public ModelRenderer head;
+    private final ModelRenderer head;
+    private final ModelRenderer body;
+    private final ModelRenderer rightleg;
+    private final ModelRenderer leftleg;
+    private final ModelRenderer rightArm;
+    private final ModelRenderer leftArm;
 
 	public ModelStrawGolem() {
-		this.textureWidth = 28;
-		this.textureHeight = 19;
-		this.leftarm = new ModelRenderer(this, 12, 8);
-		this.leftarm.setRotationPoint(3.0F, 14.0F, 0.0F);
-		this.leftarm.addBox(-0.5F, -1.25F, -1.5F, 1, 8, 3, 0.0F);
-		this.leftleg = new ModelRenderer(this, 0, 8);
-		this.leftleg.setRotationPoint(1.25F, 20.0F, 0.0F);
-		this.leftleg.addBox(-1.5F, -1.0F, -1.5F, 3, 5, 3, 0.0F);
-		this.body = new ModelRenderer(this, 0, 0);
-		this.body.setRotationPoint(0.0F, 14.5F, 0.0F);
-		this.body.addBox(-2.5F, -2.5F, -1.5F, 5, 5, 3, 0.0F);
-		this.rightleg = new ModelRenderer(this, 0, 8);
-		this.rightleg.mirror = true;
-		this.rightleg.setRotationPoint(-1.25F, 20.0F, 0.0F);
-		this.rightleg.addBox(-1.5F, -1.0F, -1.5F, 3, 5, 3, 0.0F);
-		this.rightarm = new ModelRenderer(this, 12, 8);
-		this.rightarm.mirror = true;
-		this.rightarm.setRotationPoint(-3.0F, 14.0F, 0.0F);
-		this.rightarm.addBox(-0.5F, -1.25F, -1.5F, 1, 8, 3, 0.0F);
-		this.hip = new ModelRenderer(this, 18, 6);
-		this.hip.setRotationPoint(0.0F, 18.0F, 0.1F);
-		this.hip.addBox(-1.5F, -1.0F, -1.0F, 3, 2, 2, 0.0F);
-		this.head = new ModelRenderer(this, 16, 0);
-		this.head.setRotationPoint(0.0F, 12.0F, 0.0F);
-		this.head.addBox(-1.5F, -3.0F, -2.0F, 3, 3, 3, 0.0F);
+        textureWidth = 48;
+        textureHeight = 48;
+
+        head = new ModelRenderer(this);
+        head.setRotationPoint(0.0F, 11.0F, 0.0F);
+        head.setTextureOffset(26, 24);
+        head.addBox(-2.0F, -4.0F, -2.0F, 4, 4, 4, false);
+        head.setTextureOffset(11, 32);
+        head.addBox(-2.0F, -5.0F, -2.0F, 4, 1, 4, false);
+
+        body = new ModelRenderer(this);
+        body.setRotationPoint(0.0F, 24.0F, 0.0F);
+        body.setTextureOffset(20, 32);
+        body.addBox(-4.0F, -13.0F, -3.0F, 8, 10, 6, false);
+
+        rightleg = new ModelRenderer(this);
+        rightleg.setRotationPoint(-2.0F, 21.0F, 0.0F);
+        rightleg.setTextureOffset(12, 43);
+        rightleg.addBox(-1.0F, 0.0F, -1.0F, 2, 3, 2, false);
+
+        leftleg = new ModelRenderer(this);
+        leftleg.setRotationPoint(2.0F, 21.0F, 0.0F);
+        leftleg.setTextureOffset(12, 43);
+        leftleg.addBox(-1.0F, 0.0F, -1.0F, 2, 3, 2, false);
+
+        rightArm = new ModelRenderer(this);
+        rightArm.setRotationPoint(-5.0F, 12.0F, 0.0F);
+        rightArm.setTextureOffset(4, 39);
+        rightArm.addBox(-1.0F, 0.0F, -1.0F, 2, 7, 2, false);
+
+        leftArm = new ModelRenderer(this);
+        leftArm.setRotationPoint(5.0F, 12.0F, 0.0F);
+        leftArm.setTextureOffset(4, 39);
+        leftArm.addBox(-1.0F, 0.0F, -1.0F, 2, 7, 2, false);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(this.leftarm.offsetX, this.leftarm.offsetY, this.leftarm.offsetZ);
-		GlStateManager.translate(this.leftarm.rotationPointX * f5, this.leftarm.rotationPointY * f5, this.leftarm.rotationPointZ * f5);
-		GlStateManager.scale(1.0D, 1.0D, 0.5D);
-		GlStateManager.translate(-this.leftarm.offsetX, -this.leftarm.offsetY, -this.leftarm.offsetZ);
-		GlStateManager.translate(-this.leftarm.rotationPointX * f5, -this.leftarm.rotationPointY * f5, -this.leftarm.rotationPointZ * f5);
-		this.leftarm.render(f5);
-		GlStateManager.popMatrix();
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(this.leftleg.offsetX, this.leftleg.offsetY, this.leftleg.offsetZ);
-		GlStateManager.translate(this.leftleg.rotationPointX * f5, this.leftleg.rotationPointY * f5, this.leftleg.rotationPointZ * f5);
-		GlStateManager.scale(0.5D, 1.0D, 0.5D);
-		GlStateManager.translate(-this.leftleg.offsetX, -this.leftleg.offsetY, -this.leftleg.offsetZ);
-		GlStateManager.translate(-this.leftleg.rotationPointX * f5, -this.leftleg.rotationPointY * f5, -this.leftleg.rotationPointZ * f5);
-		this.leftleg.render(f5);
-		GlStateManager.popMatrix();
-		this.body.render(f5);
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(this.rightleg.offsetX, this.rightleg.offsetY, this.rightleg.offsetZ);
-		GlStateManager.translate(this.rightleg.rotationPointX * f5, this.rightleg.rotationPointY * f5, this.rightleg.rotationPointZ * f5);
-		GlStateManager.scale(0.5D, 1.0D, 0.5D);
-		GlStateManager.translate(-this.rightleg.offsetX, -this.rightleg.offsetY, -this.rightleg.offsetZ);
-		GlStateManager.translate(-this.rightleg.rotationPointX * f5, -this.rightleg.rotationPointY * f5, -this.rightleg.rotationPointZ * f5);
-		this.rightleg.render(f5);
-		GlStateManager.popMatrix();
-		GlStateManager.pushMatrix();
-		GlStateManager.translate(this.rightarm.offsetX, this.rightarm.offsetY, this.rightarm.offsetZ);
-		GlStateManager.translate(this.rightarm.rotationPointX * f5, this.rightarm.rotationPointY * f5, this.rightarm.rotationPointZ * f5);
-		GlStateManager.scale(1.0D, 1.0D, 0.5D);
-		GlStateManager.translate(-this.rightarm.offsetX, -this.rightarm.offsetY, -this.rightarm.offsetZ);
-		GlStateManager.translate(-this.rightarm.rotationPointX * f5, -this.rightarm.rotationPointY * f5, -this.rightarm.rotationPointZ * f5);
-		this.rightarm.render(f5);
-		GlStateManager.popMatrix();
-		this.hip.render(f5);
-		this.head.render(f5);
+        head.render(f5);
+        body.render(f5);
+        rightleg.render(f5);
+        leftleg.render(f5);
+        rightArm.render(f5);
+        leftArm.render(f5);
 	}
 
 	/**
@@ -97,40 +77,49 @@ public class ModelStrawGolem extends ModelBase {
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		this.head.rotateAngleY = netHeadYaw * 0.017453292F;
-		this.head.rotateAngleX = headPitch * 0.017453292F;
+        this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.head.rotateAngleX = headPitch * 0.017453292F;
 
-		this.body.rotateAngleY = 0.0F;
-		
-		float auxLimbSwing = limbSwing * 5.0F * 0.6662F;
-		float armLimbSwingAmount = 2.0F * limbSwingAmount;
-		float legLimbSwingAmount = 2.8F * limbSwingAmount;
-		
-		this.rightarm.rotateAngleX = MathHelper.cos(auxLimbSwing + (float) Math.PI) * armLimbSwingAmount;
-		this.leftarm.rotateAngleX = MathHelper.cos(auxLimbSwing) * armLimbSwingAmount;
-		this.rightarm.rotateAngleZ = 0.0F;
-		this.leftarm.rotateAngleZ = 0.0F;
-		this.rightleg.rotateAngleX = MathHelper.cos(auxLimbSwing) * legLimbSwingAmount;
-		this.leftleg.rotateAngleX = MathHelper.cos(auxLimbSwing + (float) Math.PI) * legLimbSwingAmount;
-		this.rightleg.rotateAngleY = 0.0F;
-		this.leftleg.rotateAngleY = 0.0F;
-		this.rightleg.rotateAngleZ = 0.0F;
-		this.leftleg.rotateAngleZ = 0.0F;
+        this.body.rotateAngleY = 0.0F;
 
-		this.rightarm.rotateAngleY = 0.0F;
-		this.rightarm.rotateAngleZ = 0.0F;
+        float auxLimbSwing = limbSwing * 5.0F * 0.6662F;
 
-		this.leftarm.rotateAngleY = 0.0F;
+        float swingAmountArm = 1.7F * limbSwingAmount;
+        float swingAmoungLeg = 2.5F * limbSwingAmount;
 
-		this.rightarm.rotateAngleY = 0.0F;
+        this.rightArm.rotateAngleX = MathHelper.cos(auxLimbSwing + (float) Math.PI) * swingAmountArm;
+        this.leftArm.rotateAngleX = MathHelper.cos(auxLimbSwing) * swingAmountArm;
+        this.rightArm.rotateAngleZ = 0.0F;
+        this.leftArm.rotateAngleZ = 0.0F;
+        this.rightleg.rotateAngleX = MathHelper.cos(auxLimbSwing) * swingAmoungLeg;
+        this.leftleg.rotateAngleX = MathHelper.cos(auxLimbSwing + (float) Math.PI) * swingAmoungLeg;
+        this.rightleg.rotateAngleY = 0.0F;
+        this.leftleg.rotateAngleY = 0.0F;
+        this.rightleg.rotateAngleZ = 0.0F;
+        this.leftleg.rotateAngleZ = 0.0F;
 
-		this.body.rotateAngleX = 0.0F;
-		
-		// Arms idle movement
-		this.rightarm.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-		this.leftarm.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-		this.rightarm.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-		this.leftarm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        this.rightArm.rotateAngleY = 0.0F;
+        this.rightArm.rotateAngleZ = 0.0F;
+
+        this.leftArm.rotateAngleY = 0.0F;
+
+        this.rightArm.rotateAngleY = 0.0F;
+
+        this.body.rotateAngleX = 0.0F;
+
+        if (!((EntityLivingBase)entityIn).getHeldItemMainhand().isEmpty()) {
+            this.rightArm.rotateAngleX = (float) -(0.29D * Math.PI);
+            this.rightArm.rotateAngleY = (float) -(0.12D * Math.PI);
+            this.rightArm.rotateAngleZ = (float) (0.08D * Math.PI);
+            this.leftArm.rotateAngleX = (float) -(0.29D * Math.PI);
+            this.leftArm.rotateAngleY = (float) (0.12D * Math.PI);
+            this.leftArm.rotateAngleZ = (float) -(0.08D * Math.PI);
+        } else {
+            this.rightArm.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.06F + 0.06F;
+            this.leftArm.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.06F + 0.06F;
+            this.rightArm.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.06F;
+            this.leftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.06F;
+        }
 
 	}
 }
